@@ -12,6 +12,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+data_extraction/api_configuration
 eggs/
 .eggs/
 lib/
