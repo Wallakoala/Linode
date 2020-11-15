@@ -134,6 +134,6 @@ def write_in_csv_file(row):
         writer.writerow(row)
 
 
-# get_movie_list()
-print("Movies not found: " + str(movies_not_found))
-preprocessing.preprocess()
+get_movie_list()
+# print("Movies not found: " + str(movies_not_found))
+# preprocessing.preprocess()

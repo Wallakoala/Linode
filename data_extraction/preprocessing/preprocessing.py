@@ -2,13 +2,14 @@ import pandas as pd
 import numpy as np
 import unicodedata as ud
 
-latin_letters = {}
+LATIN_LETTERS = {}
+NO_DESCR_MOVIE = "No hay una descripción en este momento"
 
 
 def is_latin(uchr):
-    try: return latin_letters[uchr]
+    try: return LATIN_LETTERS[uchr]
     except KeyError:
-         return latin_letters.setdefault(uchr, 'LATIN' in ud.name(uchr))
+         return LATIN_LETTERS.setdefault(uchr, 'LATIN' in ud.name(uchr))
 
 
 def only_roman_chars(unistr):
@@ -32,8 +33,8 @@ def preprocess():
 
     # remove non-latin alphabet characters
     df['2'] = df['2'].map(lambda x: x if only_roman_chars(x) else " ")
-    df['4'] = df['4'].map(lambda x: "No hay una descripción en este momento" if pd.isna(x) else x)
-    df['4'] = df['4'].map(lambda x: "No hay una descripción en este momento" if x == "" else x)
+    df['4'] = df['4'].map(lambda x: NO_DESCR_MOVIE if pd.isna(x) else x)
+    df['4'] = df['4'].map(lambda x: NO_DESCR_MOVIE if x == "" else x)
 
     # indexes_to_remove = df[df['original_title'].isnull()].index.tolist()
     # df.drop(index=indexes_to_remove)
@@ -51,6 +52,7 @@ def preprocess():
 
     # replacing semicolon with dot for the votes
     df['7'] = df['7'].apply(lambda x: x.replace(',', '.'))
+
     # replacing string format
     df['9'] = df['9'].map(lambda x: x.replace("['", ""))
     df['9'] = df['9'].map(lambda x: x.replace("']", ""))
