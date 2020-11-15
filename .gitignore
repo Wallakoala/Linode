@@ -12,7 +12,7 @@ build/
 develop-eggs/
 dist/
 downloads/
-data_extraction/api_configuration
+data_extraction/api_configuration/
 resources/movielix-36036-c50612a3eafd.json
 resources/movies.csv
 resources/cleaned_movies.csv
