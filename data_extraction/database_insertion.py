@@ -45,7 +45,8 @@ df_search = df[['1', '2']]
 df_search['2'] = df_search['2'].map(lambda x: x.lower())
 df_search['2'] = df_search['2'].map(lambda x: re.sub(r'[^áéíóúüñÑA-Za-z0-9\s]', "", x))
 df_search['2'] = df_search['2'].map(lambda x: x.replace('ñ', '-&-'))
-df_search['2'] = df_search['2'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+df_search['2'] = df_search['2'].str.normalize('NFKD').\
+    str.encode('ascii', errors='ignore').str.decode('utf-8')
 df_search['2'] = df_search['2'].map(lambda x: x.replace('-&-', 'ñ'))
 df_search['3'] = df_search['2'].map(lambda x: x.split())
 search_dict = df_search.T.to_dict().values()

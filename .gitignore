@@ -53,6 +53,8 @@ coverage.xml
 .pytest_cache/
 .DS_Store
 .idea/
+.vscode
+*.ipynb
 # Translations
 *.mo
 *.pot
